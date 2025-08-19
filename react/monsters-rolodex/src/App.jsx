@@ -1,24 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import CardList from "./components/card-list/card-list";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const [monsters, setMonsters] = useState([]);
 
-  const [count , setcount] = useState(0)
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((data) => setMonsters(data));
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-    </>
-  )
-}
+    <div>
+      <CardList monsters={monsters} />
+    </div>
+  );
+};
 
-export default App
+export default App;
