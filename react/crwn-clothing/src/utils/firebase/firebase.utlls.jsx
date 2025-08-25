@@ -7,13 +7,7 @@ import {
   GoogleAuthProvider,
 } from "firebase/auth";
 
-import {
-    getFirestore,
-    doc, 
-    getDoc, 
-    setDoc,
-} from 'firebase/firestore'
-import { use } from "react";
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -39,16 +33,26 @@ provider.setCustomParameters({
   prompt: "select_account",
 });
 
+const createUserDocumentFromAuth = async (userAuth) => {
+  const userDocRef = doc(db, "users", userAuth.uid);
+  const userSnapShot = await getDoc(userDocRef);
+  if (!userSnapShot.exists()) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      await setDoc(userDocRef, { displayName, email, createdAt });
+    } catch (error) {
+      console.log("Error creating user document", error.message);
+    }
+  }
+
+  return userDocRef;
+};
+
 export const auth = getAuth();
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
-
-
-
-export const db = getFirestore();   
-
-const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) => {
-
-    const userDocRef = doc(db, 'users', userAuth.uid);
-    console.log(userDocRef)
-
-}
+export const signInWithGoogleRedirect = () =>
+  signInWithRedirect(auth, provider);
+export const db = getFirestore();
+export { createUserDocumentFromAuth };
