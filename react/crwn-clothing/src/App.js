@@ -2,8 +2,8 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './routes/home/home.component';
 import Navigation from './routes/navigation/navigation.component';
 import SignIn from './routes/sign-in/sign-in.component';
-import { GetIpLocation, GetLocation } from './utils/user/user.details';
-import { useEffect } from 'react';
+// import { GetIpLocation, GetLocation } from './utils/user/user.details';
+// import { useEffect } from 'react';
 
 const Shop = () => {
   return (
@@ -15,20 +15,20 @@ const Shop = () => {
 
 const App = () => {
 
-  useEffect(() => {
-    const fetchLocation = async () => {
-      const location = await GetLocation();
-      console.log("Location:", location);
-    };
+  // useEffect(() => {
+  //   const fetchLocation = async () => {
+  //     const location = await GetLocation();
+  //     console.log("Location:", location);
+  //   };
 
-    const fetchIPLocation = async () => {
-      const ipLocation = await GetIpLocation();
-      console.log("IP Location:", ipLocation);
-    };
+  //   const fetchIPLocation = async () => {
+  //     const ipLocation = await GetIpLocation();
+  //     console.log("IP Location:", ipLocation);
+  //   };
 
-    fetchLocation();
-    fetchIPLocation();
-  }, []);
+  //   fetchLocation();
+  //   fetchIPLocation();
+  // }, []);
 
   return (
     <div>
