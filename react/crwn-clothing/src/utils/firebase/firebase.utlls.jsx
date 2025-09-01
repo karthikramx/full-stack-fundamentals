@@ -1,20 +1,24 @@
 // Import the functions you need from the SDKs you need
+// Fire base application
 import { initializeApp } from "firebase/app";
+// Firebase authentication imports
 import {
   getAuth,
-  signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 
+// firebase firestore functions
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
+// Your web app's Firebase configuration - this is needed to interact with firebase account
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCNwtDT2KKewx5y9vv8cLrXkpR0gUpmTiM",
@@ -29,13 +33,39 @@ const firebaseConfig = {
 // Initialize Firebase
 initializeApp(firebaseConfig);
 
+// Initialize Google Auth Provider
 const googleAuthProvider = new GoogleAuthProvider();
 
 googleAuthProvider.setCustomParameters({
   prompt: "select_account",
 });
 
-const createUserDocumentFromAuth = async (userAuth, additionalInformation) => {
+// Creating Firestore Auth Object
+export const auth = getAuth();
+
+// Creating Firestore Database Object
+export const db = getFirestore();
+
+// Sign In with Google Popup
+export const signInWithGooglePopup = () =>
+  signInWithPopup(auth, googleAuthProvider);
+
+// Sign In with Email and Password
+export const signInAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+
+  try {
+    return await signInWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    console.log("Error signing in user with email and password", error.message);
+  }
+};
+
+// Creating Auth Object on Firestore
+export const createUserDocumentFromAuth = async (
+  userAuth,
+  additionalInformation
+) => {
   const userDocRef = doc(db, "users", userAuth.uid);
   const userSnapShot = await getDoc(userDocRef);
   if (!userSnapShot.exists()) {
@@ -55,14 +85,7 @@ const createUserDocumentFromAuth = async (userAuth, additionalInformation) => {
   return userDocRef;
 };
 
-export const auth = getAuth();
-export const signInWithGooglePopup = () =>
-  signInWithPopup(auth, googleAuthProvider);
-export const signInWithGoogleRedirect = () =>
-  signInWithRedirect(auth, googleAuthProvider);
-export const db = getFirestore();
-export { createUserDocumentFromAuth };
-
+// Creating Auth User with Email and Password on Firestore
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 
@@ -78,12 +101,9 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
   }
 };
 
-export const signInAuthUserWithEmailAndPassword = async (email, password) => {
-  if (!email || !password) return;
+// Sign Out User
+export const signOutUser = async () => await signOut(auth);
 
-  try {
-    return await signInWithEmailAndPassword(auth, email, password);
-  } catch (error) {
-    console.log("Error signing in user with email and password", error.message);
-  }
-};
+// Auth State Change Listener
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);

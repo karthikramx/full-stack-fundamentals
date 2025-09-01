@@ -16,6 +16,7 @@ const SignInForm = () => {
 
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
@@ -25,11 +26,10 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      const response = await signInAuthUserWithEmailAndPassword(
+      const { user } = await signInAuthUserWithEmailAndPassword(
         email,
         password
       );
-      console.log("Here is the response", response);
       alert("Sign in successful");
     } catch (error) {
       switch (error.code) {
@@ -90,7 +90,7 @@ const SignInForm = () => {
             onClick={signInWithGoogle}
             type="button"
           >
-            Sign in with Google
+            Google SIGN IN
           </Button>
         </div>
       </form>

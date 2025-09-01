@@ -6,8 +6,12 @@ import {
 import FormInput from "../form-input/form-input.component";
 import "./sign-up-form.styles.scss";
 import Button from "../button/button.component";
+import { useContext } from "react";
+import { UserContext } from "../../context/user.context";
 
 const SignUpForm = () => {
+  const { setCurrentUser } = useContext(UserContext);
+  console.log("User Context Value:", setCurrentUser);
   const defaultFormFields = {
     displayName: "",
     email: "",
@@ -29,13 +33,15 @@ const SignUpForm = () => {
       return;
     }
     try {
-      const response = await createAuthUserWithEmailAndPassword(
+      const { user } = await createAuthUserWithEmailAndPassword(
         email,
         password
       );
-      console.log("User signed up successfully", response);
 
-      await createUserDocumentFromAuth(response.user, { displayName });
+      console.log("User signed up successfully", user);
+      setCurrentUser(user);
+
+      await createUserDocumentFromAuth(user, { displayName });
     } catch (error) {
       console.log("Error signing up", error.message);
     }
@@ -48,7 +54,7 @@ const SignUpForm = () => {
 
   return (
     <div className="sign-up-container">
-      <h2>Don't have an account...</h2>
+      <h2>Don't have an account?</h2>
       <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
         <label>
