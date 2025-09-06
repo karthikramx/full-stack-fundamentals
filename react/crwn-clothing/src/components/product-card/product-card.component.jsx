@@ -17,8 +17,6 @@ const ProductCard = (product) => {
       <Button
         buttonType="inverted"
         onClick={() => {
-          console.log("adding product on button click");
-          console.log(product);
           addItemToCart(product);
         }}
       >

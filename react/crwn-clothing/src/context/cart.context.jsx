@@ -30,7 +30,6 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
   const addItemToCart = (productToAdd) => {
-    console.log("triggered in context");
     setCartItems(addCartItem(cartItems, productToAdd));
   };
 
