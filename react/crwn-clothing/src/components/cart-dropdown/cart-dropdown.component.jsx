@@ -1,18 +1,17 @@
+import CartItem from "../cart-item/cart-item.component";
 import Button from "../button/button.component";
+import { useContext } from "react";
+import { CartContext } from "../../context/cart.context";
 
-const CartDropDown = ({ items }) => {
+const CartDropDown = () => {
+  const { cartItems } = useContext(CartContext);
+
   return (
-    <div className="cart-dropdown-container">
-      <div className="cart-items">
-        {items.map((item) => (
-          <div key={item.id} className="cart-item">
-            <img src={item.imageUrl} alt={item.name} />
-            <div className="item-details">
-              <span className="name">{item.name}</span>
-              <span className="price">{item.price}</span>
-            </div>
-          </div>
-        ))}
+    <div className="cart-items">
+      <div className="cart-dropdown-container">
+        {cartItems.map((item) => {
+          return <CartItem key={item.id} item={item} />;
+        })}
       </div>
       <Button type="inverted">Go to Checkout</Button>
     </div>
