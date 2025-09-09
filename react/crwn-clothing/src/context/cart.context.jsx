@@ -22,12 +22,15 @@ export const CartContext = createContext({
   setIsOpen: () => {},
   cartItems: [],
   setCartItem: () => {},
+  cartCount: 0,
+  setCartCount: () => {},
 });
 
 // in order to open the portal you need a context provider
 export const CartProvider = ({ children }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+  const [cartCount, setCartCount] = useState(0);
 
   const addItemToCart = (productToAdd) => {
     setCartItems(addCartItem(cartItems, productToAdd));
