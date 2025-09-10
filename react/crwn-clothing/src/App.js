@@ -3,6 +3,7 @@ import Home from './routes/home/home.component';
 import Navigation from './routes/navigation/navigation.component';
 import Authentication from './routes/authentication/authentication.component';
 import Shop from './routes/shop/shop.component';
+import CheckOut from './routes/checkout/checkout.route'
 // import { GetIpLocation, GetLocation } from './utils/user/user.details';
 // import { useEffect } from 'react';
 
@@ -32,6 +33,7 @@ const App = () => {
             <Route index element={<Home />} />
             <Route path='shop' element={<Shop />} />
             <Route path='auth' element={<Authentication />} />
+            <Route path='checkout' element={<CheckOut />} />
           </Route>
         </Routes>
       </div>
