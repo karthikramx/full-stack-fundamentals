@@ -13,7 +13,14 @@ import {
 } from "firebase/auth";
 
 // firebase firestore functions
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  writeBatch,
+} from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -45,6 +52,22 @@ export const auth = getAuth();
 
 // Creating Firestore Database Object
 export const db = getFirestore();
+
+// Adding a new collection to our database
+export const addCollectionAndDocuments = async (
+  collectionKey, // name of the collection
+  objectsToAdd
+) => {
+  const collectionRef = collection(db, collectionKey);
+  // transaction - a successful unit of work to a database (like read and write)
+  const batch = writeBatch(db);
+  objectsToAdd.forEach((object) => {
+    const docRef = doc(collectionRef, object.title.toLowerCase());
+    batch.set(docRef, object);
+  });
+  await batch.commit();
+  console.log("done");
+};
 
 // Sign In with Google Popup
 export const signInWithGooglePopup = () =>
