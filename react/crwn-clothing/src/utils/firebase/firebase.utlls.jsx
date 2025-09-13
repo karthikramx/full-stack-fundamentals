@@ -20,6 +20,8 @@ import {
   setDoc,
   collection,
   writeBatch,
+  query,
+  getDocs,
 } from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -67,6 +69,21 @@ export const addCollectionAndDocuments = async (
   });
   await batch.commit();
   console.log("done");
+};
+
+// Get Categories and Documents
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, "categories"); // getting reference to the collection
+  const q = query(collectionRef);
+
+  const querySnapShot = await getDocs(q);
+  const categoryMap = querySnapShot.docs.reduce((acc, docSnapShot) => {
+    const { title, items } = docSnapShot.data();
+    acc[title.toLowerCase()] = items;
+    return acc;
+  }, {});
+
+  return categoryMap;
 };
 
 // Sign In with Google Popup
