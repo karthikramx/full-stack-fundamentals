@@ -1,12 +1,13 @@
 import { createContext, useState, useEffect } from "react";
+
 import { getCategoriesAndDocuments } from "../utils/firebase/firebase.utlls";
 
-// import SHOP_DATA from "../shopdata";
+export const CategoriesContext = createContext({
+  categoriesMap: {},
+});
 
-export const CategoriesContext = createContext({ products: [] });
-
-export const ProductsProvider = ({ children }) => {
-  const [categoriesMap, setCategoriesMap] = useState([]);
+export const CategoriesProvider = ({ children }) => {
+  const [categoriesMap, setCategoriesMap] = useState({});
 
   useEffect(() => {
     const getCategoriesMap = async () => {

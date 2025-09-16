@@ -4,26 +4,8 @@ import Navigation from './routes/navigation/navigation.component';
 import Authentication from './routes/authentication/authentication.component';
 import Shop from './routes/shop/shop.component';
 import CheckOut from './routes/checkout/checkout.route'
-// import { GetIpLocation, GetLocation } from './utils/user/user.details';
-// import { useEffect } from 'react';
-
 
 const App = () => {
-
-  // useEffect(() => {
-  //   const fetchLocation = async () => {
-  //     const location = await GetLocation();
-  //     console.log("Location:", location);
-  //   };
-
-  //   const fetchIPLocation = async () => {
-  //     const ipLocation = await GetIpLocation();
-  //     console.log("IP Location:", ipLocation);
-  //   };
-
-  //   fetchLocation();
-  //   fetchIPLocation();
-  // }, []);
 
   return (
     <div>
