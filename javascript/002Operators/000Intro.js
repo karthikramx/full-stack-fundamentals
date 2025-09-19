@@ -8,8 +8,10 @@
 // &&, || , !
 
 // Assignment Operators
-// ==
+// += ,  -= , *= , /=
 
 // Conditional (Ternary) Operator - if a is true then apply b or c 
 // a ? b : c 
+
+
 
