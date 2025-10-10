@@ -2,15 +2,15 @@ import { ContextVariable } from "../context/contextExample";
 import { useContext } from "react";
 
 export default function SetContextComponent() {
-  const [examplevariable, setExampleVariable] = useContext(ContextVariable);
+  const { test, setTest } = useContext(ContextVariable);
 
-  console.log(examplevariable);
+  console.log(test);
 
   return (
     <div>
       <button
         onClick={() => {
-          setExampleVariable(!examplevariable);
+          setTest(!test);
         }}
       >
         Click Me

@@ -8,8 +8,9 @@ export const ContextVariable = createContext({
 export function TestContextProvider({ children }) {
 
     const [test, setTest] = useState(true);
+    const value = { test, setTest }
 
-    return (<ContextVariable.Provider value={{ test, setTest }}>
+    return (<ContextVariable.Provider value={value}>
         {children}
     </ContextVariable.Provider>)
 
