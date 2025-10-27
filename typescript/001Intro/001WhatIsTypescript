@@ -1,0 +1,6 @@
+Typescript is not an entirely different language from Javascript. 
+It doesn't replace Javascript. 
+You may often hear it spoken about as if it's a distinct language in conversation with other developers i.e.: "I know Go lang, Javascript, Typescript, etc...", but don't think that means learning Typescript requires learning something entirely new- Typescript is a superset of Javascript, which means it's just Javascript with additional features. 
+Everything you've learned about Javascript is still important and valid, adding Typescript to your skillset just means taking that Javascript knowledge to the next level, not replacing it with something else. This also means that if you've put off learning Typescript before- then you should stop worrying. You can start using Typescript immediately and slowly implement more of typescript's features as you learn.
+It's an incremental process just like learning anything else like React, Tailwind, or Next. 
+So don't be intimidated! By the end of this guide you'll have a solid understanding of the basics, a great reference for any of the common issues you'll face, and the knowledge to confidently hop into any Typescript codebase and understand everything that's going on. Let's start that first incremental step with an overview of the basic types- and then we can hop into a project and use them with react!
