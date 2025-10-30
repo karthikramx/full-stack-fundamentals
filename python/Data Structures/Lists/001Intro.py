@@ -18,3 +18,6 @@ x.insert(1,'hello')
 print(x)
 x.reverse()
 print(x)
+
+
+print(numbers[::-1])
