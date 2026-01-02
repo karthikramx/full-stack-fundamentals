@@ -29,3 +29,5 @@ Transformer - Need a better understanding... of this..
   order or position of words (tokens) in a sequence
 
 ## Multi-Head Attention for Rich Context
+
+- Intuition : looking at the same text in multiple simple ways and combining the results.
