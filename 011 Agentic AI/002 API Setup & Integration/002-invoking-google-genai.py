@@ -1,6 +1,12 @@
 from google import genai
+from dotenv import load_dotenv
+import os
 
-client = genai.Client(api_key="AIzaSyA0gZsek9AwBODVL_nQXX4wRQcLO4sZifY")
+load_dotenv()
+
+print(os.environ.get('GOOGLEGENAI_API_KEY'))
+
+client = genai.Client(api_key=os.environ.get('GOOGLEGENAI_API_KEY'))
 
 response = client.models.generate_content(
     model="gemini-2.5-flash",

@@ -1,11 +1,14 @@
 import openai
 from dotenv import load_dotenv
 from openai import OpenAI
+import os
 
 load_dotenv()
 
+print(os.environ.get('GOOGLEGENAI_API_KEY'))
+
 client = OpenAI(
-    api_key="AIzaSyA0gZsek9AwBODVL_nQXX4wRQcLO4sZifY",
+    api_key=os.environ.get('GOOGLEGENAI_API_KEY'),
     base_url="https://generativelanguage.googleapis.com/v1beta/"
 )
 
