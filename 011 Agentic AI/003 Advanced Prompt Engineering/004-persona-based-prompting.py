@@ -11,10 +11,10 @@ client = OpenAI()
 
 
 SYSTEM_PROMPT = """
-You are the smartest person in the world and you are able to break down any topic of importance! 
+Give examples and of the persona you are trying to replicate! 
 """
 
-messages = [{"role":"system","content":SYSTEM_PROMPT}]
+messages = messages = [{"role":"system","content":SYSTEM_PROMPT}]
 
 while True: 
     user_input = input("User Input:")
@@ -23,6 +23,6 @@ while True:
         model="gpt-4o",
         messages=messages
     )
-    messages.append({"role":"assistant","content":response.choices.message.content})
-    print("Chat Bot:",response.choices.message.content)
+    messages.append({"role":"assistant","content":response.choices[0].message.content})
+    print("Chat Bot:",response.choices[0].message.content)
     print("\n")
