@@ -20,7 +20,6 @@ monorepo/
 │ ├── worker1/ # Service 1: Database operations
 │ │ ├── celery_app.py
 │ │ ├── tasks.py # DB-specific tasks
-│ │ ├── models.py # SQLAlchemy models
 │ │ ├── requirements.txt # psycopg2, sqlalchemy, etc.
 │ │ ├── .env
 │ │ └── Dockerfile
