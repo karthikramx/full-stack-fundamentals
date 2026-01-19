@@ -7,6 +7,7 @@ queue system
 
 #### Project Setup
 
+```
 monorepo/
 ├── api/ # Main FastAPI application
 │ ├── main.py
@@ -34,3 +35,4 @@ monorepo/
 ├── docker-compose.yml # Local development
 ├── docker-compose.prod.yml # Production (AWS/GCP/Azure)
 └── README.md
+```
