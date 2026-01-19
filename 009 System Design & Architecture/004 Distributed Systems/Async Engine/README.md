@@ -1,4 +1,4 @@
-## Asyn Engine
+## Async Engine
 
 The project contains the necessary code required to run
 an Asynchronous Worker Setup, triggered using fast-api and
